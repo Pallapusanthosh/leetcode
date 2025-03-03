@@ -2,40 +2,29 @@ import java.util.*;
 
 class Solution {
     public int[] pivotArray(int[] nums, int pivot) {
-        Queue<Integer> s1 = new LinkedList<>();
-        Queue<Integer> s2 = new LinkedList<>();
-        int pivot_counter = 0;
-
-        // Separate elements into two queues and count pivot occurrences
+        int lessCount = 0, pivotCount = 0, greatCount = 0;
+        
         for (int num : nums) {
-            if (num > pivot) {
-                s1.add(num);
-            } else if (num < pivot) {
-                s2.add(num);
-            } else {
-                pivot_counter++;
-            }
+            if (num < pivot) lessCount++;
+            else if (num > pivot) greatCount++;
+            else pivotCount++;
+        }
+
+        int[] less = new int[lessCount];
+        int[] great = new int[greatCount];
+
+        int l = 0, g = 0;
+        for (int num : nums) {
+            if (num < pivot) less[l++] = num;
+            else if (num > pivot) great[g++] = num;
         }
 
         int[] result = new int[nums.length];
         int k = 0;
-
-        // Add smaller elements
-        while (!s2.isEmpty()) {
-            result[k++] = s2.poll();
-        }
-
-        // Add pivot occurrences
-        while (pivot_counter > 0) {
-            result[k++] = pivot;
-            pivot_counter--;
-        }
-
-        // Add larger elements
-        while (!s1.isEmpty()) {
-            result[k++] = s1.poll();
-        }
-
+        for (int num : less) result[k++] = num;
+        while (pivotCount-- > 0) result[k++] = pivot;
+        for (int num : great) result[k++] = num;
+        
         return result;
     }
 }
