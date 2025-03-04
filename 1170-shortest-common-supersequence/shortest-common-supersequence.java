@@ -20,14 +20,6 @@ class Solution {
             }
         }
 
-        // Step 2: Print DP Table (Optional Debugging)
-        System.out.println("DP Table:");
-        for (int[] row : dp) {
-            for (int num : row) {
-                System.out.print(num + " ");
-            }
-            System.out.println();
-        }
 
         // Step 3: Reconstruct the Shortest Common Supersequence (SCS)
         StringBuilder scs = new StringBuilder();
