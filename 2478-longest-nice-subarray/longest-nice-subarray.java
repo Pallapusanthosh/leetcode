@@ -7,7 +7,8 @@ class Solution {
             int res = 0;
             for (int j = i; j < n; j++) {
                 if ((res & nums[j]) == 0) {
-                    res |= nums[j]; // Add nums[j] to the result set
+                    res |= nums[j]; 
+                   
                     max_length = Math.max(max_length, j - i + 1);
                 } else {
                     break; // Break the loop if common bits are found
