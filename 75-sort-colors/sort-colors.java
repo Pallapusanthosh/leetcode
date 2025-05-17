@@ -1,19 +1,25 @@
 class Solution {
+    public void switchThem(int[] nums, int x, int y) {
+        int temp = nums[x];
+        nums[x] = nums[y];
+        nums[y] = temp;
+    }
     public void sortColors(int[] nums) {
-        if (nums.length == 1) return;
-
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int num : nums) {
-            map.put(num, map.getOrDefault(num, 0) + 1);
-        }
-
+        int read = 0;
+        int zeroes = 0;
+        int twos = nums.length - 1;
         
-        int k = 0;
-        for (int i = 0; i <= 2; i++) {
-            int count = map.getOrDefault(i, 0);
-            if(count == 0) continue;
-            for (int j = 0; j < count; j++) {
-                nums[k++] = i;
+        
+        while (read <= twos) {
+            if (nums[read] == 0) {
+                switchThem(nums, read, zeroes);
+                read++;
+                zeroes++;
+            } else if (nums[read] == 2) {
+                switchThem(nums, read, twos);
+                twos--;
+            } else {
+                read++;
             }
         }
     }
