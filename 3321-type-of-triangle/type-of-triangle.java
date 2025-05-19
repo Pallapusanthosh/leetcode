@@ -1,21 +1,9 @@
 class Solution {
     public String triangleType(int[] nums) {
-        HashSet<Integer> set = new HashSet<>();
-        if(nums[0] + nums[1] > nums[2] && nums[1] + nums[2] > nums[0] &&
-           nums[2] + nums[0] > nums[1]){
-             set.add(nums[0]);
-             set.add(nums[1]);
-             set.add(nums[2]);
-        }
-        if(set.size() == 1){
-            return "equilateral";
-        }
-        if(set.size() == 2){
-            return "isosceles";
-        }
-        if(set.size() == 3){
-            return "scalene";
-        }
-        return "none";
+        int a = nums[0], b = nums[1], c = nums[2];
+        if (a + b <= c || a + c <= b || b + c <= a) return "none";
+        if (a == b && b == c) return "equilateral";
+        if (a == b || b == c || a == c) return "isosceles";
+        return "scalene";
     }
 }
