@@ -19,8 +19,7 @@ class Solution {
         return count;
     }
     public void dfs(int i,int j,char[][] grid ,int m, int n , int[][] visited){
-        System.out.print(i);
-         System.out.println(j);
+    
         if(i < 0 || j < 0 || i>= m || j >=n || grid[i][j]=='0'||visited[i][j] == 1){
             return;
         }
