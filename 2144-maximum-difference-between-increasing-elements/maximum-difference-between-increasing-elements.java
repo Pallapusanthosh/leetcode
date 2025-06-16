@@ -6,7 +6,7 @@ class Solution {
         int min_ele = nums[0];
         for(int i = 1; i<n;i++){
             if(min_ele!=nums[i]){
-                 max_diff = Math.max(max_diff,nums[i] - min_ele);
+                max_diff = Math.max(max_diff,nums[i] - min_ele);
                 min_ele = Math.min(min_ele,nums[i]);
             }
        
