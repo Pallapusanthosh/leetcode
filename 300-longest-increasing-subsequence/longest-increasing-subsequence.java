@@ -24,7 +24,7 @@ class Solution {
             ar.set(low,nums[i]);
         }
       }
-      System.out.print(ar);
+   
       return ar.size();
     }
 }
