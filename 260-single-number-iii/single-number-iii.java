@@ -4,7 +4,7 @@ class Solution {
         for (int num : nums) xor ^= num;
 
         int rightmostbit = xor & (-xor);  // isolate rightmost set bit
-
+        
         int b1 = 0, b2 = 0;
         for (int num : nums) {
             if ((num & rightmostbit) != 0) {
