@@ -4,7 +4,8 @@ class Solution {
     public String largestTimeFromDigits(int[] arr) {
         List<List<Integer>> sol = new ArrayList<>();
         back(arr, 0, sol);
-
+        //permutation--> base case i == a.length ayitey just add the arr to the sol 
+        // if else start j loop from i and swap j and i backtrack and swap i and j and take the max time 
         int maxTime = -1;
         for (List<Integer> ar : sol) {
             int hh = ar.get(0) * 10 + ar.get(1);
