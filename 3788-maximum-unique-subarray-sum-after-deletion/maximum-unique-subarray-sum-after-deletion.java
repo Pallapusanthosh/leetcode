@@ -2,11 +2,11 @@ class Solution {
     public int maxSum(int[] nums) {
         int maxs = Integer.MIN_VALUE;
         int maxsum = 0;
-        HashSet<Integer> set = new HashSet<>();
+        boolean[] f = new boolean[201];
         for(int i = 0 ; i<nums.length;i++){
             if(nums[i] > 0){
-                if(!set.contains(nums[i])){
-                    set.add(nums[i]);
+                if(!f[nums[i]]){
+                    f[nums[i]] = true;
                     maxsum +=nums[i];
                 }
             } 
