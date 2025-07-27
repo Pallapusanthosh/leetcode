@@ -11,7 +11,7 @@ class Solution {
         }
         k= j;
     }
-        System.out.println(new_num);
+       
         int n = nums.length;
         for(int i= 1 ; i< new_num.size() -1;i++){
             if((new_num.get(i) > new_num.get(i-1) && new_num.get(i) > new_num.get(i+1)) ||
