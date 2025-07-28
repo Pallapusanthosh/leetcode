@@ -21,11 +21,9 @@ class Solution {
         }
         return l;
     }
-
-    boolean testingday(int[] bloom, int day , int m ,int k) {
+boolean testingday(int[] bloom, int day , int m ,int k) {
         int count = 0;
         int boque = 0;
-        // System.out.println("hii");
         for (int num : bloom) {
             if (num <= day) {
                 count++;
