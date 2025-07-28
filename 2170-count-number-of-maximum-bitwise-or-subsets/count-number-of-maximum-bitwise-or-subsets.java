@@ -1,32 +1,28 @@
-import java.util.*;
-
 class Solution {
+    public int count = 0;
+
     public int countMaxOrSubsets(int[] nums) {
         int maxOr = 0;
+
         for (int num : nums) {
             maxOr |= num;
         }
-        Map<String, Integer> memo = new HashMap<>();
-        return dfs(0, 0, nums, maxOr, memo);
+
+
+        backtrack(0, 0, nums, maxOr);
+        return count;
     }
 
-    int dfs(int i, int curOr, int[] nums, int maxOr, Map<String, Integer> memo) {
-        if (i == nums.length) {
-            return curOr == maxOr ? 1 : 0;
+    void backtrack(int index, int currentOr, int[] nums, int maxOr) {
+        if (index == nums.length) {
+            if (currentOr == maxOr) {
+                count++;
+            }
+            return;
         }
 
-        String key = i + "," + curOr;
-        if (memo.containsKey(key)) {
-            return memo.get(key);
-        }
+        backtrack(index + 1, currentOr | nums[index], nums, maxOr);
 
-        // Include nums[i]
-        int include = dfs(i + 1, curOr | nums[i], nums, maxOr, memo);
-        // Exclude nums[i]
-        int exclude = dfs(i + 1, curOr, nums, maxOr, memo);
-
-        int total = include + exclude;
-        memo.put(key, total);
-        return total;
+        backtrack(index + 1, currentOr, nums, maxOr);
     }
 }
