@@ -24,10 +24,12 @@ class Solution {
     }
     void inorder(TreeNode root , int k,HashSet<Integer> set,boolean[] ans){
         if(root == null)return;
+        if(ans[0]) return;
 
         inorder(root.left,k,set,ans);
         if(set.contains(root.val)){
             ans[0] = true;
+            return;
         }
         set.add(k - root.val);
         inorder(root.right,k,set,ans);
