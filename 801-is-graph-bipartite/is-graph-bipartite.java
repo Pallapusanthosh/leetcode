@@ -6,14 +6,29 @@ class Solution {
 
         for (int i = 0; i < m; i++) {
             if (visited[i] == 0) {
-                if (!bfs(graph, visited, color, i)) {
+                if (!dfs(graph, visited, color, i,1)) {
                     return false;
                 }
             }
         }
         return true;
     }
-
+     boolean dfs(int[][] graph, int[] visited, int[] color, int start , int col){
+          visited[start] = 1;
+          color[start] = col;
+          
+          for(int neigh : graph[start]){
+              if(visited[neigh] !=1){
+                int childcol = 3- col;
+                if(!dfs(graph, visited,color , neigh,childcol)){
+                    return false;
+                }
+              }else if(color[neigh]==col){
+                  return false;
+              }
+          }
+          return true;
+      }
     boolean bfs(int[][] graph, int[] visited, int[] color, int start) {
         Queue<Integer> q = new LinkedList<>();
         q.add(start);
