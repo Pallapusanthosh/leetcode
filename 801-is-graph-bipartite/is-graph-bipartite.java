@@ -27,7 +27,7 @@ class Solution {
             int col = curnode[1];
             visited[node] = 1;
             color[node] = col;
-            System.out.println(node);
+           
             int size = graph[node].length;
             for(int i = 0;i<size;i++){
                 int child = graph[node][i];
