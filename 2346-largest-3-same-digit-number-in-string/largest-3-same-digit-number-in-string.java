@@ -5,7 +5,6 @@ class Solution {
         for(int i = 0; i< num.length() -2;i++){
             if(num.charAt(i) == num.charAt(i+1) && num.charAt(i) == num.charAt(i+2)){
                 int num1 =(int) num.charAt(i) -'0';
-                System.out.println(num1);
                sol = Math.max(sol , Integer.parseInt("" + num1 +""+ num1 +"" + num1  ));
             }
         }
