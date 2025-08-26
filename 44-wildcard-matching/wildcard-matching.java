@@ -3,8 +3,42 @@ class Solution {
         int m = s.length();
         int n = p.length();
         int[][] dp = new int[m+1][n+1]; 
-        for(int[] row : dp) Arrays.fill(row, -1);
-        return f(m, n, s, p, dp) == 1;
+        //base cases
+         dp[0][0] = 1; // empty string matches empty pattern
+
+        // when s is empty, p must be all '*'
+        for (int j = 1; j <= n; j++) {
+            boolean allStars = true;
+            for (int k = 1; k <= j; k++) {
+                if (p.charAt(k-1) != '*') {
+                    allStars = false;
+                    break;
+                }
+            }
+            dp[0][j] = allStars ? 1 : 0;
+        }
+
+        for(int i = 1; i<= m ;i++){
+                for(int j = 1; j<=n;j++){
+                 
+                if(s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '?') {
+                         dp[i][j] = dp[i-1][ j-1];
+                } else if(p.charAt(j-1) == '*') {
+                    // '*' matches empty (j-1) or one char (i-1)
+                    if(dp[i-1][ j] == 1 || dp[i][j-1] == 1)
+                        dp[i][j] = 1;
+                 }else{
+                    dp[i][j] = 0;
+                 }
+     
+
+            }
+            
+            //loops
+        }
+        return dp[m][n] == 1;
+        // for(int[] row : dp) Arrays.fill(row, -1);
+        // return f(m, n, s, p, dp) == 1;
     }
 
     int f(int i, int j, String s, String p, int[][] dp) {
