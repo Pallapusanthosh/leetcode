@@ -14,4 +14,4 @@ select
     else id
   end as id,
 
-student from seat order by id asc;
+student from seat order by id;
