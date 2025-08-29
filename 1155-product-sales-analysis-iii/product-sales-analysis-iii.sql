@@ -6,3 +6,4 @@ JOIN (
     GROUP BY product_id
 ) t
 ON s.product_id = t.product_id AND s.year = t.first_year;
+
