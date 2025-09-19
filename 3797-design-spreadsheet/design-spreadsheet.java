@@ -1,41 +1,30 @@
 class Spreadsheet {
-    public int[][] sheet;
+    // public int[][] sheet;
+    //instead of int[][] we can use hashmap for <String , Integer>
+    public HashMap<String , Integer> sheet;
     public Spreadsheet(int rows) {
-        sheet = new int[rows + 1][27];
+        sheet = new HashMap<>();
     }
     
     public void setCell(String cell, int value) {
-        int col = cell.charAt(0) - 'A' + 1;
-        int row = Integer.parseInt(cell.substring(1,cell.length()));
-         
-        
-        sheet[row][col] = value;
+        sheet.put(cell,value);
     }
     
     public void resetCell(String cell) {
         
-        int col = (cell.charAt(0) - 'A' )  + 1;
-        int row = Integer.parseInt(cell.substring(1,cell.length()));
-        sheet[row][col] = 0;
+       sheet.remove(cell);
     }
     
     public int getValue(String formula) {
-        String s = formula.substring(1,formula.length());
-        String[] ops = s.split("\\+");
-         return parseop(ops[0]) + parseop(ops[1]);
-    
+        int index = formula.indexOf('+');
+        String leftstr = formula.substring(1,index);
+        String rightstr = formula.substring(index + 1);
+        int x = Character.isLetter(leftstr.charAt(0))  ? sheet.getOrDefault(leftstr,0) : Integer.parseInt(leftstr);
+        int y = Character.isLetter(rightstr.charAt(0))  ? sheet.getOrDefault(rightstr,0) : Integer.parseInt(rightstr);
+        return x + y;
         
     }
-    private int parseop(String op){
-        try{
-            return Integer.parseInt(op);
-        }catch(Exception e){
-            int col = op.charAt(0) - 'A' + 1;
-            int row = Integer.parseInt(op.substring(1));
-            
-            return sheet[row][col];
-        }
-    }
+  
 }
 
 /**
